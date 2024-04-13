@@ -1,24 +1,6 @@
 #include "header.h"
 #include <stdio.h>
 
-
-// Definição das estruturas
-typedef enum {
-    JAN = 1, FEV, MAR, ABR, MAI, JUN, JUL, AGO, SET, OUT, NOV, DEZ
-} Meses;
-
-typedef struct {
-    int dia;
-    Meses mes;
-    int ano;
-    float valorTotal;
-} VendaDiaria;
-
-// Funções
-void registrarVendaDiaria(VendaDiaria vendas[], int *numVendas);
-void calcularTotalDiario(VendaDiaria vendas[], int numVendas, int dia, Meses mes, int ano);
-void gerarRelatorioDiario(VendaDiaria vendas[], int numVendas, int dia, Meses mes, int ano);
-
 int main() {
     // Array para armazenar as vendas diárias
     VendaDiaria vendas[100];
