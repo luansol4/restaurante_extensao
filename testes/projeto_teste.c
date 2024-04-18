@@ -14,8 +14,8 @@
 typedef enum { REFEICAO, QUENTINHA, BEBIDA } TipoItem;
 typedef enum { JANEIRO = 1, FEVEREIRO, MARCO, ABRIL, MAIO, JUNHO, JULHO, AGOSTO, SETEMBRO, OUTUBRO, NOVEMBRO, DEZEMBRO } Meses;
 
-const char *nomes_itens[] = { "Refeição", "Quentinha", "Bebida" };
-const char *nomes_meses[] = { "", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" };
+const char *nomes_itens[] = { "RefeiÃ§Ã£o", "Quentinha", "Bebida" };
+const char *nomes_meses[] = { "", "Janeiro", "Fevereiro", "MarÃ§o", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" };
 
 typedef struct {
     TipoItem tipo;
@@ -41,12 +41,16 @@ Mes meses[12];
 int total_vendas = 0;
 double total_vendas_anuais[12] = {0};
 
+
 void registrar_venda() {
 	int mes_num;
+	
+	setlocale(LC_ALL, "Portuguese"); // Acentuação Gráfica
+	
     printf("Digite o número do mês da venda (1-12): ");
     scanf("%d", &mes_num);
     if(mes_num < 1 || mes_num > 12) {
-        printf("Número do mês inválido. Por favor, insira um valor entre 1 e 12.\n");
+        printf("Número do mÃªs invÃ¡lido. Por favor, insira um valor entre 1 e 12.\n");
         return;
     }
     char opcao;
@@ -90,8 +94,11 @@ void registrar_venda() {
 }
 
 void relatorio_diario() {
+	
+	setlocale(LC_ALL, "Portuguese"); // Acentuação Gráfica
+	
 	printf("+------------------------------+\n");
-	printf("|     RETLATÓRIO DIÁRIO 2023   |\n");
+	printf("|     RETLATÓRIO DIÁRIO 2023  |\n");
 	printf("*------------------------------*\n");
     double total_vendas_diarias = 0;
     for(int j = 0; j < total_vendas; j++) { 
@@ -114,6 +121,9 @@ void relatorio_diario() {
 
 void relatorio_mensal() {
     int mes_num;
+    
+    setlocale(LC_ALL, "Portuguese"); // Acentuação Gráfica
+    
     printf("Digite o número do mês que deseja ver o relatório (1-12): ");
     scanf("%d", &mes_num);
     if(mes_num < 1 || mes_num > 12) {
@@ -123,7 +133,7 @@ void relatorio_mensal() {
     printf("+------------------------------+\n");
 	printf("|     RETLATÓRIO MENSAL 2023   |\n");
 	printf("*------------------------------*\n");
-    printf("| Mês: %s\n", nomes_meses[mes_num]);
+    printf("| MÃªs: %s\n", nomes_meses[mes_num]);
     printf("| Total de vendas: R$ %.2f\n", meses[mes_num-1].total_vendas);
     int venda_encontrada = 0;
     for(int j = 0; j < total_vendas; j++) {
@@ -203,12 +213,14 @@ void relatorio_anual() {
         indices_ordenados[i] = i;
     }
     
+    setlocale(LC_ALL, "Portuguese"); // Acentuação Gráfica
+    
     ordenar_meses(indices_ordenados, meses);
 
     printf("+-----------------------------+\n");
     printf("|     RELATÓRIO ANUAL 2023    |\n");
     for(int i = 0; i < 12; i++) {
-        int mes_index = indices_ordenados[i]; // Obter o índice do mês ordenado
+        int mes_index = indices_ordenados[i]; // Obter o Ã­ndice do mÃªs ordenado
         int mes_num = meses[mes_index].mes;
         printf("*-----------------------------*\n");
         printf("| Mês: %s\n", nomes_meses[mes_num]);
@@ -246,7 +258,7 @@ void relatorio_anual() {
 int main(void) {
 	
     system("CLS");
-    setlocale(LC_ALL, "Portuguese");
+    setlocale(LC_ALL, "Portuguese"); // Acentuação Gráfica
     int opcao;
 
     for(int i = 0; i < 12; i++) {
@@ -258,12 +270,12 @@ int main(void) {
     	
         system("CLS");
         printf("+-----------------------------+\n");
-        printf("|           BEM VINDO         |\n");
+        printf("|           BEM-VINDO         |\n");
         printf("+-----------------------------+\n");
-        printf("|  [1]Registrar venda         |\n");
-        printf("|  [2]Gerar relatório diário  |\n");
-        printf("|  [3]Gerar relatório mensal  |\n");
-        printf("|  [4]Gerar relatório anual   |\n");
+        printf("|  [1]Registrar Venda         |\n");
+        printf("|  [2]Gerar Relatório Diário  |\n");
+        printf("|  [3]Gerar Relatório Mensal  |\n");
+        printf("|  [4]Gerar Relatório Anual   |\n");
         printf("|  [5]Sair                    |\n");
         printf("+-----------------------------+\n");
         printf("Escolha uma opção: ");
@@ -289,5 +301,4 @@ int main(void) {
     system("PAUSE");
     return 0;
 }
-
 
