@@ -62,6 +62,13 @@ void registrar_venda() {
         printf("Número do mês inválido. Por favor, insira um valor entre 1 e 12.\n");
         return;
     }
+    
+    // Verificar se o número total de vendas já atingiu o limite de 100
+    if (total_vendas >= MAX) {
+        printf("O limite máximo de vendas diárias foi atingido.\n");
+        return;
+    }
+    
     char opcao;
 
     do {
@@ -69,7 +76,7 @@ void registrar_venda() {
         Item item;
         printf("Digite o tipo do item (0 - Refeição, 1 - Quentinha, 2 - Bebida): ");
         scanf("%d", &item.tipo);
-        switch(item.tipo) {
+	    switch(item.tipo) {
 	    	case REFEICAO:
 	        item.peso = PESO_REFEICAO;
 	        item.preco = PRECO_REFEICAO;
@@ -85,8 +92,16 @@ void registrar_venda() {
 	        item.preco = PRECO_BEBIDA;
 	        break;
 	}
+	
+	// Solicitar a quantidade do item
         printf("Digite a quantidade do item: ");
         scanf("%d", &item.quantidade);
+        
+        // Verificar se a quantidade excede o limite de 100 vendas
+        if (total_vendas + item.quantidade > MAX) {
+            printf("A quantidade de vendas excede o limite máximo de %d.\n", MAX);
+            break; // Encerrar o loop caso o limite seja excedido
+        }
         vendas[total_vendas].itens[vendas[total_vendas].total_itens++] = item;
         printf("Item: %s\n", nomes_itens[item.tipo]);
         printf("Preço: %.2f\n",item.preco);
@@ -105,6 +120,7 @@ void registrar_venda() {
     printf("VENDA REGISTRADA COM SUCESSO!\n");
     system("PAUSE");
 }
+
 
 // Função para gerar o relatório diário de vendas
 void relatorio_diario() {
