@@ -32,7 +32,7 @@ typedef enum { REFEICAO, QUENTINHA, BEBIDA } TipoItem;
 typedef enum { JANEIRO = 1, FEVEREIRO, MARCO, ABRIL, MAIO, JUNHO, JULHO, AGOSTO, SETEMBRO, OUTUBRO, NOVEMBRO, DEZEMBRO } Meses;
 
 const char *nomes_itens[] = { "Refeição", "Quentinha", "Bebida" };
-const char *nomes_meses[] = { "", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
+const char *nomes_meses[] = { "", "Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
 
 typedef struct {
     TipoItem tipo;
@@ -301,7 +301,7 @@ int main(void) {
         printf("|  [4]Gerar Relat%crio Anual   |\n", 162);
         printf("|  [5]Sair                    |\n");
         printf("+-----------------------------+\n");
-        printf("Escolha uma op%c%co: ", 135, 132);
+        printf("ESCOLHA UMA OP%c%cO: ", 128, 199);
         scanf("%d", &opcao);
 
         switch (opcao) {
