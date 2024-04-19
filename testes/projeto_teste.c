@@ -64,17 +64,17 @@ void registrar_venda() {
 	
 	//setlocale(LC_ALL, "Portuguese"); // Acentuação Gráfica
 	
-    printf("Digite o n%cmero do m%cs da venda (1-12): ", 163, 136);
+    printf("Digite o número do mês da venda (1-12): ");
     scanf("%d", &mes_num);
     if(mes_num < 1 || mes_num > 12) {
-        printf("N%cmero do m%cs inv%clido. Por favor, insira um valor entre 1 e 12.\n", 163, 136, 160);
+        printf("Número do mês inválido. Por favor, insira um valor entre 1 e 12.\n");
         return;
     }
     char opcao;
 
     do {
         Item item;
-        printf("DIGITE O TIPO DO ITEM (0 - REFEI%c%cO, 1 - QUENTINHA, 2 - BEBIDA): ", 128, 199);
+        printf("DIGITE O TIPO DO ITEM (0 - REFEIÇÃO, 1 - QUENTINHA, 2 - BEBIDA): ");
         scanf("%d", &item.tipo);
         switch(item.tipo) {
             case REFEICAO:
@@ -94,7 +94,7 @@ void registrar_venda() {
         scanf("%d", &item.quantidade);
         vendas[total_vendas].itens[vendas[total_vendas].total_itens++] = item;
         printf("Item: %s\n", nomes_itens[item.tipo]);
-        printf("Pre%co: %.2f\n", 135, item.preco);
+        printf("Preço: %.2f\n",item.preco);
         printf("Peso: %.2f\n", item.peso);
         printf("Quantidade: %d\n", item.quantidade);
         printf("Total: %.2f\n", item.preco * item.quantidade);
@@ -115,21 +115,21 @@ void relatorio_diario() {
 	//setlocale(LC_ALL, "Portuguese"); // Acentuação Gráfica
 	
 	printf("+------------------------------+\n");
-	printf("|     RELAT%cRIO DI%cRIO 2023  |\n", 224, 181);
+	printf("|     RELATÓRIO DIÁRIO 2023    |\n");
 	printf("*------------------------------*\n");
     double total_vendas_diarias = 0;
     for(int j = 0; j < total_vendas; j++) { 
         for(int i = 0; i < vendas[j].total_itens; i++) { 
             total_vendas_diarias += vendas[j].itens[i].preco * vendas[j].itens[i].quantidade;
             printf("| Item: %s\n", nomes_itens[vendas[j].itens[i].tipo]);
-            printf("| Pre%co: %.2f\n", 135,vendas[j].itens[i].preco);
+            printf("| Preço: %.2f\n",vendas[j].itens[i].preco);
             printf("| Peso: %.2f\n", vendas[j].itens[i].peso);
             printf("| Quantidade: %d\n", vendas[j].itens[i].quantidade);
             printf("| Total: %.2f\n", vendas[j].itens[i].preco * vendas[j].itens[i].quantidade);
             printf("*------------------------------*\n"); 
         }
     }
-    printf("| Total de vendas di%crias: R$ %.2f\n", 160, total_vendas_diarias);
+    printf("| Total de vendas diárias: R$ %.2f\n",total_vendas_diarias);
     printf("*\n");
     system("PAUSE");
     system("CLS");
@@ -141,22 +141,22 @@ void relatorio_mensal() {
     
     //setlocale(LC_ALL, "Portuguese"); // Acentuação Gráfica
     
-    printf("Digite o n%cmero do m%cs que deseja ver o relat%crio (1-12): ", 163, 136, 162);
+    printf("Digite o número do mês que deseja ver o relatório (1-12): ");
     scanf("%d", &mes_num);
     if(mes_num < 1 || mes_num > 12) {
     	
     	system("cls");
     	
-        printf("N%cmero do m%cs inv%clido. Por favor, insira um valor entre 1 e 12.\n\n", 163, 136, 160);
+        printf("Número do mês inválido. Por favor, insira um valor entre 1 e 12.\n\n");
         
         system("PAUSE");
         
         return;
     }
     printf("+------------------------------+\n");
-	printf("|     RELAT%cRIO MENSAL 2023    |\n", 224);
+	printf("|     RELATÓRIO MENSAL 2023    |\n");
 	printf("*------------------------------*\n");
-    printf("| M%cs: %s\n", 136, nomes_meses[mes_num]);
+    printf("| Mês: %s\n", nomes_meses[mes_num]);
     printf("| Total de vendas: R$ %.2f\n", meses[mes_num-1].total_vendas);
     int venda_encontrada = 0;
     for(int j = 0; j < total_vendas; j++) {
@@ -164,7 +164,7 @@ void relatorio_mensal() {
             venda_encontrada = 1;
             for(int i = 0; i < vendas[j].total_itens; i++) {
                 printf("| Item: %s\n", nomes_itens[vendas[j].itens[i].tipo]);
-                printf("| Pre%co: %.2f\n", 135, vendas[j].itens[i].preco);
+                printf("| Preço: %.2f\n",vendas[j].itens[i].preco);
                 printf("| Peso: %.2f\n", vendas[j].itens[i].peso);
                 printf("| Quantidade: %d\n", vendas[j].itens[i].quantidade);
                 printf("| Total: %.2f\n", vendas[j].itens[i].preco * vendas[j].itens[i].quantidade);
@@ -174,10 +174,10 @@ void relatorio_mensal() {
     }
     if(!venda_encontrada) {
         printf("| Item: --\n");
-        printf("| Pre%co: --\n", 135);
+        printf("| Preço: --\n");
         printf("| Peso: --\n");
         printf("| Quantidade: --\n");
-        printf("| Nenhuma venda foi registrada neste m%cs.\n", 136);
+        printf("| Nenhuma venda foi registrada neste mês.\n");
         printf("| Total: --\n");
         printf("*\n");
     }
@@ -281,7 +281,7 @@ void relatorio_anual() {
 int main(void) {
 	
     system("CLS");
-    //setlocale(LC_ALL, "Portuguese"); // Acentuação Gráfica
+    
     int opcao;
 
     for(int i = 0; i < 12; i++) {
@@ -290,19 +290,20 @@ int main(void) {
     }
 
     do {
-    	
-        system("CLS");
-        printf("+-----------------------------+\n");
-        printf("|           BEM-VINDO         |\n");
-        printf("+-----------------------------+\n");
-        printf("|  [1]Registrar Venda         |\n");
-        printf("|  [2]Gerar Relat%crio Di%crio  |\n", 162, 160);
-        printf("|  [3]Gerar Relat%crio Mensal  |\n", 162);
-        printf("|  [4]Gerar Relat%crio Anual   |\n", 162);
-        printf("|  [5]Sair                    |\n");
-        printf("+-----------------------------+\n");
-        printf("ESCOLHA UMA OP%c%cO: ", 128, 199);
-        scanf("%d", &opcao);
+    	setlocale(LC_ALL, "Portuguese");{ // Acentuação Gráfica
+        	system("CLS");
+        	printf("+-----------------------------+\n");
+        	printf("|           BEM-VINDO         |\n");
+        	printf("+-----------------------------+\n");
+        	printf("|  [1]Registrar Venda         |\n");
+        	printf("|  [2]Gerar Relatório Diário  |\n");
+        	printf("|  [3]Gerar Relatório Mensal  |\n");
+        	printf("|  [4]Gerar Relatório Anual   |\n");
+        	printf("|  [5]Sair                    |\n");
+        	printf("+-----------------------------+\n");
+        	printf("ESCOLHA UMA OPÇÃO: ");
+        	scanf("%d", &opcao);
+    }
 
         switch (opcao) {
             case 1:
