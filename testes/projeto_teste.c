@@ -32,7 +32,7 @@ typedef enum { REFEICAO, QUENTINHA, BEBIDA } TipoItem;
 typedef enum { JANEIRO = 1, FEVEREIRO, MARCO, ABRIL, MAIO, JUNHO, JULHO, AGOSTO, SETEMBRO, OUTUBRO, NOVEMBRO, DEZEMBRO } Meses;
 
 const char *nomes_itens[] = { "Refeição", "Quentinha", "Bebida" };
-const char *nomes_meses[] = { "", "Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
+const char *nomes_meses[] = { "", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
 
 typedef struct {
     TipoItem tipo;
@@ -74,7 +74,7 @@ void registrar_venda() {
 
     do {
         Item item;
-        printf("Digite o tipo do item (0 - Refei%c%co, 1 - Quentinha, 2 - Bebida): ", 135, 132);
+        printf("DIGITE O TIPO DO ITEM (0 - REFEI%c%cO, 1 - QUENTINHA, 2 - BEBIDA): ", 128, 199);
         scanf("%d", &item.tipo);
         switch(item.tipo) {
             case REFEICAO:
@@ -236,17 +236,17 @@ void relatorio_anual() {
         indices_ordenados[i] = i;
     }
     
-    //setlocale(LC_ALL, "Portuguese"); // Acentuação Gráfica
+    setlocale(LC_ALL, "Portuguese"); // Acentuação Gráfica
     
     ordenar_meses(indices_ordenados, meses);
 
     printf("+-----------------------------+\n");
-    printf("|     RELAT%cRIO ANUAL 2023    |\n", 224);
+    printf("|     RELATÓRIO ANUAL 2023    |\n");
     for(int i = 0; i < 12; i++) {
         int mes_index = indices_ordenados[i]; // Obter o Ã­ndice do mÃªs ordenado
         int mes_num = meses[mes_index].mes;
         printf("*-----------------------------*\n");
-        printf("| M%cs: %s\n", 136, nomes_meses[mes_num]);
+        printf("| Mês: %s\n", nomes_meses[mes_num]);
         printf("| Total de vendas: R$ %.2f\n", meses[mes_index].total_vendas); 
         int venda_encontrada = 0;
         for(int j = 0; j < total_vendas; j++) {
@@ -254,7 +254,7 @@ void relatorio_anual() {
                 venda_encontrada = 1;
                 for(int k = 0; k < vendas[j].total_itens; k++) {
                     printf("| Item: %s\n", nomes_itens[vendas[j].itens[k].tipo]);
-                    printf("| Pre%co: %.2f\n", 135, vendas[j].itens[k].preco);
+                    printf("| Preço: %.2f\n", vendas[j].itens[k].preco);
                     printf("| Peso: %.2f\n", vendas[j].itens[k].peso);
                     printf("| Quantidade: %d\n", vendas[j].itens[k].quantidade);
                     printf("| Total: %.2f\n", vendas[j].itens[k].preco * vendas[j].itens[k].quantidade);
@@ -264,10 +264,10 @@ void relatorio_anual() {
         }
         if(!venda_encontrada) {
             printf("| Item: --\n");
-            printf("| Pre%co: --\n",135);
+            printf("| Preço: --\n");
             printf("| Peso: --\n");
             printf("| Quantidade: --\n");
-            printf("| Nenhuma venda foi registrada neste m%cs.\n", 136);
+            printf("| Nenhuma venda foi registrada neste mês.\n");
             printf("| Total: --\n");
             printf("*\n");
         }
