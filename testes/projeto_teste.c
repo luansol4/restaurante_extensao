@@ -1,15 +1,14 @@
 #include <stdio.h>
-#include <conio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
 
-#define MAX 100
-#define PRECO_QUENTINHA 20.00
-#define PRECO_EMBALAGEM 0.50
-#define PESO_REFEICAO 0.5
-#define PRECO_REFEICAO 10.00
-#define PRECO_BEBIDA 5.00
+#define MAX 100 
+#define PRECO_QUENTINHA 20.00 
+#define PRECO_EMBALAGEM 0.50 
+#define PESO_REFEICAO 0.5 
+#define PRECO_REFEICAO 10.00 
+#define PRECO_BEBIDA 5.00 
 
 // Definição dos tipos de item (refeição, quentinha, bebida)
 typedef enum { REFEICAO, QUENTINHA, BEBIDA } TipoItem;
@@ -25,24 +24,24 @@ const char *nomes_meses[] = { "", "Janeiro", "Fevereiro", "Março", "Abril", "Ma
 
 // Estrutura para representar um item vendido
 typedef struct {
-    TipoItem tipo;
-    double peso;
-    double preco;
+    TipoItem tipo; 
+    double peso; 
+    double preco; 
     int quantidade;
 } Item;
 
 // Estrutura para representar uma venda
 typedef struct {
-    Item itens[MAX];
-    int total_itens;
-    double total_vendas;
-    Meses mes;
+    Item itens[MAX]; 
+    int total_itens; 
+    double total_vendas; 
+    Meses mes; 
 } Venda;
 
-// Estrutura para representar as vendas de cada mê
+// Estrutura para representar as vendas de cada mês
 typedef struct {
-    double total_vendas;
-    Meses mes;
+    double total_vendas; // Total de vendas no mês
+    Meses mes; // Mês
 } Mes;
 
 // Array de vendas
@@ -121,13 +120,11 @@ void registrar_venda() {
     system("PAUSE");
 }
 
-
 // Função para gerar o relatório diário de vendas
 void relatorio_diario() {
-	
-	printf("+------------------------------+\n");
-	printf("|     RELATÓRIO DIÁRIO 2023    |\n");
-	printf("*------------------------------*\n");
+    printf("+------------------------------+\n");
+    printf("|     RELATÓRIO DIÁRIO 2023    |\n");
+    printf("*------------------------------*\n");
     double total_vendas_diarias = 0;
     for(int j = 0; j < total_vendas; j++) { 
         for(int i = 0; i < vendas[j].total_itens; i++) { 
@@ -149,13 +146,13 @@ void relatorio_diario() {
 // Função para gerar o relatório mensal de vendas 
 void relatorio_mensal() {
     int mes_num;
-    // escolher o mês que deseja ver o relatório
+     // escolher o mês que deseja ver o relatório
     printf("Digite o número do mês que deseja ver o relatório (1-12): ");
     scanf("%d", &mes_num);
     if(mes_num < 1 || mes_num > 12) {
-    	
-    	system("cls");
-    	
+        
+        system("cls");
+        
         printf("Número do mês inválido. Por favor, insira um valor entre 1 e 12.\n\n");
         
         system("PAUSE");
@@ -163,8 +160,8 @@ void relatorio_mensal() {
         return;
     }
     printf("+------------------------------+\n");
-	printf("|     RELATÓRIO MENSAL 2023    |\n");
-	printf("*------------------------------*\n");
+    printf("|     RELATÓRIO MENSAL 2023    |\n");
+    printf("*------------------------------*\n");
     printf("| Mês: %s\n", nomes_meses[mes_num]);
     printf("| Total de vendas: R$ %.2f\n", meses[mes_num-1].total_vendas);
     int venda_encontrada = 0;
@@ -224,7 +221,7 @@ void ordenar_indices(double vendas[], int indices[], int esquerda, int direita) 
         ordenar_indices(vendas, indices, i, direita);
 }
 
-// Função para ordenar os meses de acordo com as vendas --->: quicksort
+// Função para ordenar os meses de acordo com as vendas
 void ordenar_meses(int indices[], Mes meses[]) {
     
     for (int i = 0; i < 11; i++) {
@@ -248,14 +245,14 @@ void relatorio_anual() {
         indices_ordenados[i] = i;
     }
     
-    setlocale(LC_ALL, "Portuguese_Brazil"); 
+    setlocale(LC_ALL, "Portuguese"); // Acentuação Gráfica
     
     ordenar_meses(indices_ordenados, meses);
 
     printf("+-----------------------------+\n");
     printf("|     RELATÓRIO ANUAL 2023    |\n");
     for(int i = 0; i < 12; i++) {
-        int mes_index = indices_ordenados[i]; // Obter o Ã­ndice do mÃªs ordenado
+        int mes_index = indices_ordenados[i]; 
         int mes_num = meses[mes_index].mes;
         printf("*-----------------------------*\n");
         printf("| Mês: %s\n", nomes_meses[mes_num]);
@@ -288,40 +285,37 @@ void relatorio_anual() {
     system("CLS");
 }
 
-
 // Função principal
 int main(void) {
-	
+    
     system("CLS");
     
     int opcao;
-	
+
     // Inicialização dos meses com total de vendas zero
     for(int i = 0; i < 12; i++) {
         meses[i].total_vendas = 0;
         meses[i].mes = i + 1;
     }
 
-// Loop principal do programa
+    // Loop principal do programa
     do {
-    	setlocale(LC_ALL, "Portuguese");{ // Acentuação Gráfica
-        	system("CLS");
-        	printf("+-----------------------------+\n");
-        	printf("|           BEM-VINDO         |\n");
-        	printf("+-----------------------------+\n");
-        	printf("|  [1]Registrar Venda         |\n");
-        	printf("|  [2]Gerar Relatório Diário  |\n");
-        	printf("|  [3]Gerar Relatório Mensal  |\n");
-        	printf("|  [4]Gerar Relatório Anual   |\n");
-        	printf("|  [5]Sair                    |\n");
-        	printf("+-----------------------------+\n");
-        	printf("ESCOLHA UMA OPÇÃO: ");
-        	scanf("%d", &opcao);
-    }
+        setlocale(LC_ALL, "Portuguese_Brazil"); // Acentuação Gráfica
+        system("CLS");
+        printf("+-----------------------------+\n");
+        printf("|           BEM-VINDO         |\n");
+        printf("+-----------------------------+\n");
+        printf("|  [1]Registrar Venda         |\n");
+        printf("|  [2]Gerar Relatório Diário  |\n");
+        printf("|  [3]Gerar Relatório Mensal  |\n");
+        printf("|  [4]Gerar Relatório Anual   |\n");
+        printf("|  [5]Sair                    |\n");
+        printf("+-----------------------------+\n");
+        printf("Escolha uma opção: ");
+        scanf("%d", &opcao);
 
         switch (opcao) {
             case 1:
-            	
                 registrar_venda();
                 break;
             case 2:
@@ -331,7 +325,6 @@ int main(void) {
                 relatorio_mensal();
                 break;
             case 4:
-            	
                 relatorio_anual();
                 break;
         }
