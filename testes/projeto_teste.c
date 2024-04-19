@@ -70,21 +70,21 @@ void registrar_venda() {
         printf("Digite o tipo do item (0 - Refeição, 1 - Quentinha, 2 - Bebida): ");
         scanf("%d", &item.tipo);
         switch(item.tipo) {
-            case REFEICAO:
-                item.peso = PESO_REFEICAO;
-                item.preco = PRECO_REFEICAO;
-                break;
-            case QUENTINHA:
-                item.peso = 0; // Definindo o peso da quentinha como 0
-                item.preco = PRECO_QUENTINHA;
-                printf("Valor da embalagem da quentinha: R$ %.2f\n", PRECO_EMBALAGEM);
-                item.preco += PRECO_EMBALAGEM; // Adicionando o preço da embalagem
-                break;
-            case BEBIDA:
-                item.peso = 1;
-                item.preco = PRECO_BEBIDA;
-                break;
-        }
+	    	case REFEICAO:
+	        item.peso = PESO_REFEICAO;
+	        item.preco = PRECO_REFEICAO;
+	        break;
+	    	case QUENTINHA:
+	        item.peso = 0; // Definindo o peso da quentinha como 0
+	        item.preco = PRECO_QUENTINHA;
+	        printf("Valor da embalagem da quentinha: R$ %.2f\n", PRECO_EMBALAGEM);
+	        item.preco += PRECO_EMBALAGEM; // Adicionando o preço da embalagem
+	        break;
+	    	case BEBIDA:
+	        item.peso = 0; // Definindo o peso da bebida como 0
+	        item.preco = PRECO_BEBIDA;
+	        break;
+	}
         printf("Digite a quantidade do item: ");
         scanf("%d", &item.quantidade);
         vendas[total_vendas].itens[vendas[total_vendas].total_itens++] = item;
